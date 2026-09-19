@@ -70,4 +70,4 @@ Upload the project files or connect the repository to your preferred hosting pro
 
 ## License
 
-This project is available for personal and educational use.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
