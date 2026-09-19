@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FocusList is a focused, local-first task manager for your daily work.">
+  <title>FocusList | Build. Organize. Simplify.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="FocusList home">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span>FocusList</span>
+      </a>
+      <div class="topbar-meta">
+        <span class="today-label" id="todayLabel"></span>
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="local-label">Saved locally</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div>
+          <p class="eyebrow">Your daily command center</p>
+          <h1 id="pageTitle">Make room for<br><em>what matters.</em></h1>
+          <p class="hero-copy">A clear, calm place for the work in front of you.</p>
+        </div>
+        <div class="progress-card" aria-label="Task progress">
+          <div class="progress-heading">
+            <span>Today’s progress</span>
+            <strong id="progressPercent">0%</strong>
+          </div>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <p id="progressSummary">No tasks yet</p>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Task workspace">
+        <div class="toolbar">
+          <div class="section-heading">
+            <h2>Your tasks</h2>
+            <span class="task-count" id="taskCount">0</span>
+          </div>
+          <div class="toolbar-actions">
+            <label class="search-field">
+              <span class="sr-only">Search tasks</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+              <input type="search" id="searchInput" placeholder="Search tasks..." autocomplete="off">
+            </label>
+            <label class="filter-field">
+              <span class="sr-only">Filter tasks</span>
+              <select id="filterSelect">
+                <option value="all">All tasks</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+                <option value="high">High priority</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="task-list" id="taskList" aria-live="polite"></div>
+      </section>
+
+      <section class="add-panel" aria-labelledby="addTaskHeading">
+        <div class="add-heading">
+          <span class="add-icon" aria-hidden="true">+</span>
+          <div>
+            <h2 id="addTaskHeading">Add a new task</h2>
+            <p>Keep it clear. Keep it moving.</p>
+          </div>
+        </div>
+        <form class="task-form" id="taskForm">
+          <div class="input-group title-group">
+            <label for="taskTitle">What needs doing?</label>
+            <input id="taskTitle" name="title" type="text" maxlength="120" placeholder="e.g. Prepare quarterly report" required>
+          </div>
+          <div class="input-group">
+            <label for="taskDate">Due date</label>
+            <input id="taskDate" name="dueDate" type="date">
+          </div>
+          <div class="input-group">
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority" name="priority">
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <button class="primary-button" type="submit"><span>+</span> Add task</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>FocusList</span>
+      <span>Simple by design · private by default</span>
+    </footer>
+  </div>
+
+  <dialog class="edit-dialog" id="editDialog" aria-labelledby="editDialogTitle">
+    <form method="dialog" class="dialog-card" id="editForm">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow">Refine the details</p>
+          <h2 id="editDialogTitle">Edit task</h2>
+        </div>
+        <button class="icon-button close-button" value="cancel" aria-label="Close edit dialog" type="submit">×</button>
+      </div>
+      <input type="hidden" id="editTaskId">
+      <div class="input-group">
+        <label for="editTaskTitle">Task title</label>
+        <input id="editTaskTitle" type="text" maxlength="120" required>
+      </div>
+      <div class="dialog-fields">
+        <div class="input-group">
+          <label for="editTaskDate">Due date</label>
+          <input id="editTaskDate" type="date">
+        </div>
+        <div class="input-group">
+          <label for="editTaskPriority">Priority</label>
+          <select id="editTaskPriority">
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="dialog-actions">
+        <button class="secondary-button" value="cancel" type="submit">Cancel</button>
+        <button class="primary-button" value="default" type="submit" id="saveEditButton">Save changes</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
